@@ -1,9 +1,30 @@
-FROM node:8-alpine
-
+# ----------------
+# STEP 1:
+# build with pkg
+FROM node:latest AS build
 WORKDIR /web
-COPY ./package.json ./package.json
-RUN yarn install
-COPY . .
-RUN yarn build --prod
 
-CMD [ "yarn", "run", "start:prod" ]
+# install dependencies with cache
+COPY package.json .
+COPY yarn.lock .
+RUN yarn
+# copy app files, build and package
+COPY . /web
+RUN yarn package
+
+# ----------------
+# STEP 2:
+# run with alpine
+FROM alpine:latest
+WORKDIR /web
+ENV NODE_ENV=production
+
+# install required libs
+RUN apk update && apk add --no-cache libstdc++ libgcc
+
+# copy prebuilt binary from previous step
+COPY --from=build /web/web /web/web
+CMD ["/web/web"]
+
+
+#CMD [ "yarn", "run", "start:prod" ]
