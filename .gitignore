@@ -1,10 +1,10 @@
-logs
-*.log
-npm-debug.log*
+web/logs
+web/*.log
+web/npm-debug.log*
 .DS_Store
 
 coverage
-node_modules
-build
-public/static
-.env.*.local
+web/node_modules
+web/build
+web/public/static
+web/.env.*.local
