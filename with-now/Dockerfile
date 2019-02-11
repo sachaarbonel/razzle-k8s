@@ -25,6 +25,3 @@ RUN apk update && apk add --no-cache libstdc++ libgcc
 # copy prebuilt binary from previous step
 COPY --from=build /web/web /web/web
 CMD ["/web/web"]
-
-
-#CMD [ "yarn", "run", "start:prod" ]

@@ -1,5 +1,5 @@
 {
-  "name": "razzle-examples-with-afterjs",
+  "name": "razzle-examples-with-now",
   "version": "2.4.1",
   "license": "MIT",
   "scripts": {
@@ -7,18 +7,18 @@
     "build": "razzle build",
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js",
-    "package": "yarn build --prod && pkg -t node8-alpine-x64 --output web build/server.js"
+    "now-start": "yarn start:prod",
+    "package": "yarn build --prod && npx pkg . -t node8-alpine-x64 --output web"
   },
+  "bin": "build/server.js",
   "dependencies": {
     "@jaredpalmer/after": "latest",
-    "express": "^4.16.2",
-    "razzle": "^2.4.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-helmet": "^5.2.0",
+    "express": "^4.15.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "pkg": "^4.3.7"
+    "razzle": "^2.4.1"
   }
 }
