@@ -8,3 +8,4 @@ node_modules
 build
 public/static
 .env.*.local
+razzle-k8s-*

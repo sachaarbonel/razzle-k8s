@@ -1,13 +1,13 @@
 import express from 'express';
 import { render } from '@jaredpalmer/after';
 import routes from './routes';
-
+const path = require('path');
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
 server
   .disable('x-powered-by')
-  .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
+  .use(express.static(path.join(__dirname, '../build/public')))
   .get('/*', async (req, res) => {
     try {
       const html = await render({

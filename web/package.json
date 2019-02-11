@@ -1,5 +1,5 @@
 {
-  "name": "razzle-examples-with-now",
+  "name": "razzle-k8s",
   "version": "2.4.1",
   "license": "MIT",
   "scripts": {
@@ -8,9 +8,16 @@
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js",
     "now-start": "yarn start:prod",
-    "package": "yarn build --prod && npx pkg . -t node8-alpine-x64 --output web"
+    "package": "yarn build && npx pkg . && ./razzle-k8s-linux"
   },
   "bin": "build/server.js",
+  "pkg": {
+    "scripts": "build/public/static/js/*.js",
+    "assets": [
+      "build/public/static/media/*.svg",
+      "build/public/static/css/*.css"
+    ]
+  },
   "dependencies": {
     "@jaredpalmer/after": "latest",
     "express": "^4.15.2",
