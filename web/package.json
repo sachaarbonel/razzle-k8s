@@ -8,7 +8,7 @@
     "test": "razzle test --env=jsdom",
     "start:prod": "NODE_ENV=production node build/server.js",
     "now-start": "yarn start:prod",
-    "package": "yarn build && npx pkg . && ./razzle-k8s-linux"
+    "package": "yarn build --prod && npx pkg . -t node8-alpine-x64 --output app"
   },
   "bin": "build/server.js",
   "pkg": {
@@ -26,6 +26,7 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
+    "pkg": "^4.3.7",
     "razzle": "^2.4.1"
   }
 }
