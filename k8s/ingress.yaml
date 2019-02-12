@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: myrazzleapp-ingress
+  namespace: razzle
+spec:
+  tls:
+  - hosts:
+    - <yourdomain>
+  rules:
+  - host: <yourdomain>
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myrazzleapp
+          servicePort: 3000

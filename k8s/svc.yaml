@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: myrazzleapp
+  name: myrazzleapp-svc
+  namespace: razzle
+spec:
+  externalTrafficPolicy: Cluster
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: myrazzleapp
+  type: LoadBalancer
